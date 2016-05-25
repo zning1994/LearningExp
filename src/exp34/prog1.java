@@ -3,7 +3,7 @@ package exp34;
 import java.io.*;
 
 /**
- * Created by ZNing on 16/5/25.
+ * Created by ZNing on 16/4/26.
  * 1. 写一个程序，接受用户的键盘输入，并把它写到文件中去。用户输入 exit 保存文件并退出程序。
  *
  */
