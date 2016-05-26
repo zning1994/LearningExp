@@ -58,7 +58,8 @@ class Receiving extends Thread{
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
+            System.out.print("向服务器的连接异常，已中断");
         }
 
     }
@@ -66,6 +67,9 @@ class Receiving extends Thread{
 
 public class problem2Client {
     public static void main(String args[]){
+
+        System.out.println("客户端已启动");
+
         try {
             //创建Socket连接服务器
             Socket socket = new Socket("127.0.0.1", 8888);
@@ -81,7 +85,8 @@ public class problem2Client {
             //}
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.print("无法找到服务器，连接异常，已中断");
         }
     }
 }

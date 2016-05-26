@@ -83,7 +83,8 @@ class ReceivingSer extends Thread{
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.print("向客户端的连接异常，已中断");
         }
 
     }
@@ -92,6 +93,8 @@ class ReceivingSer extends Thread{
 
 public class problem2 {
     public static void main(String args[]){
+
+        System.out.println("服务器端已启动");
 
             try {
                 //创建服务器端socket
@@ -111,7 +114,8 @@ public class problem2 {
                 //}
 
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.print("创建服务器失败，请检查端口占用状态，服务已中断");
             }
     }
 
