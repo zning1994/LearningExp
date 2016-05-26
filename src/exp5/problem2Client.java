@@ -59,7 +59,7 @@ class Receiving extends Thread{
 
         } catch (IOException e) {
            // e.printStackTrace();
-            System.out.print("向服务器的连接异常，已中断");
+            System.err.print("向服务器的连接异常，已中断");
         }
 
     }
@@ -86,7 +86,7 @@ public class problem2Client {
 
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.print("无法找到服务器，连接异常，已中断");
+            System.err.print("无法找到服务器，连接异常，已中断");
         }
     }
 }
