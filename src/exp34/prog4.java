@@ -8,6 +8,7 @@ package exp34;
  * 3）使用缓冲流读入内存后 按字节读，
  * 4）使用缓冲流读入内存后按字节数组读，数组大小为 1024.
  * 比较他们的执行时间。
+ * http://www.weixueyuan.net/view/6045.html
  *
  */
 public class prog4 {

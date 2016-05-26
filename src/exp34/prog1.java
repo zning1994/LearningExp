@@ -17,7 +17,7 @@ public class prog1 {
         BufferedWriter out = new BufferedWriter(new FileWriter(fileName,true));//去掉true可以覆盖读写文件
         String str;
         System.out.println("Enter lines of text.");
-        System.out.println("Enter 'end' to quit.");
+        System.out.println("Enter 'exit' to quit.");
 
         do {
             str = br.readLine();
