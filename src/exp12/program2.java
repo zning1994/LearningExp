@@ -46,7 +46,7 @@ public class program2 extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         JFrame frame = new program2();
-        frame.setTitle("实验2：显示与修改标签");
+        frame.setTitle("实验2：显示与修改标签  By: ZNing");
         frame.setSize(250, 200);
         frame.setLocation(500, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

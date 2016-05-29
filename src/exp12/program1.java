@@ -53,7 +53,7 @@ public class program1 extends JFrame{
 
     public static void main(String[] args) {
         JFrame frame = new program1();
-        frame.setTitle("实验1：标签颜色显示");
+        frame.setTitle("实验1：标签颜色显示  By: ZNing");
         frame.setSize(250, 200);
         frame.setLocation(500, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
