@@ -1,5 +1,8 @@
 package exp5;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -16,9 +19,9 @@ public class problem4newClient {
 
     //定义发送数据报的目的地
     public static final int DEST_PORT = 30000;
-    public static final String DEST_IP = "127.0.0.1";
+    public static final String DEST_IP = "192.168.0.112";
     //定义每个数据报的最大大小为4K
-    private static final int DATA_LEN = 4096;
+    private static final int DATA_LEN = 40960;
     //定义该客户端使用的DatagramSocket
     private DatagramSocket socket = null;
     //定义接收网络数据的字节数组
@@ -29,6 +32,27 @@ public class problem4newClient {
     //定义一个用于发送的DatagramPacket对象
     private DatagramPacket outPacket = null;
 
+    public static File getFileFromBytes(byte[] b, String outputFile) {
+        BufferedOutputStream stream = null;
+        File file = null;
+        try {
+            file = new File(outputFile);
+            FileOutputStream fstream = new FileOutputStream(file);
+            stream = new BufferedOutputStream(fstream);
+            stream.write(b);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stream != null) {
+                try {
+                    stream.close();
+                } catch (IOException e1){
+                    e1.printStackTrace();
+                }
+            }
+        }
+        return file;
+    }
 
     public void init()throws IOException
     {
@@ -52,8 +76,8 @@ public class problem4newClient {
                 socket.send(outPacket);
                 //读取Socket中的数据，读到的数据放在inPacket所封装的字节数组里。
                 socket.receive(inPacket);
-                System.out.println(new String(inBuff , 0 ,
-                        inPacket.getLength()));
+                getFileFromBytes(inPacket.getData(),"123.txt");
+                System.out.println("传输成功");
             }
         }
         //使用finally块保证关闭资源
@@ -67,6 +91,7 @@ public class problem4newClient {
     }
 
     public static void main(String[] args) throws Exception{
+        System.out.println("客户端已就绪,请输入回车以开启传送");
         new problem4newClient().init();
     }
 }
