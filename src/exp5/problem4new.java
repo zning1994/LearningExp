@@ -1,5 +1,8 @@
 package exp5;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -16,7 +19,7 @@ public class problem4new {
 
     public static final int PORT = 30000;
     //定义每个数据报的最大大小为4K
-    private static final int DATA_LEN = 4096;
+    private static final int DATA_LEN = 40960;
     //定义该服务器使用的DatagramSocket
     private DatagramSocket socket = null;
     //定义接收网络数据的字节数组
@@ -26,14 +29,27 @@ public class problem4new {
             new DatagramPacket(inBuff , inBuff.length);
     //定义一个用于发送的DatagramPacket对象
     private DatagramPacket outPacket;
-    //定义一个字符串数组，服务器发送该数组的的元素
-    String[] books = new String[]
-            {
-                    "轻量级J2EE企业应用实战",
-                    "基于J2EE的Ajax宝典",
-                    "Struts2权威指南",
-                    "ROR敏捷开发最佳实践"
-            };
+    //定义一个字符串，表示文件路径，服务器发送该文件
+    private static String fileName1 = "C:\\Users\\ZNing\\Desktop\\111.txt";
+
+    public static byte[] getBytesFromFile(File f) throws Exception{
+        if (f == null) {
+            return null;
+        }
+        try {
+            FileInputStream stream = new FileInputStream(f);
+            ByteArrayOutputStream out = new ByteArrayOutputStream(1000);
+            byte[] b = new byte[50000];
+            for (int n;(n = stream.read(b)) != -1;) {
+                out.write(b, 0, n);
+            }
+            stream.close();
+            out.close();
+            return out.toByteArray();
+        } catch (IOException e){
+        }
+        return null;
+    }
 
     public void init()throws IOException
     {
@@ -41,8 +57,10 @@ public class problem4new {
         {
             //创建DatagramSocket对象
             socket = new DatagramSocket(PORT);
+            //文件对象创建
+            File file1 = new File(fileName1);
             //采用循环接受数据
-            for (int i = 0; i < 1000 ; i++ )
+            for (int i = 0; i < 50000 ; i++ )
             {
                 //读取Socket中的数据，读到的数据放在inPacket所封装的字节数组里。
                 socket.receive(inPacket);
@@ -52,7 +70,12 @@ public class problem4new {
                 System.out.println(new String(inBuff ,
                         0 , inPacket.getLength()));
                 //从字符串数组中取出一个元素作为发送的数据
-                byte[] sendData = books[i % 4].getBytes();
+                byte[] sendData = new byte[0];
+                try {
+                    sendData = getBytesFromFile(file1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 //以指定字节数组作为发送数据、以刚接受到的DatagramPacket的
                 //源SocketAddress作为目标SocketAddress创建DatagramPacket。
                 outPacket = new DatagramPacket(sendData ,
@@ -72,6 +95,7 @@ public class problem4new {
     }
 
     public static void main(String[] args) throws Exception{
+    System.out.println("服务器已就绪");
         new problem4new().init();
     }
 }
