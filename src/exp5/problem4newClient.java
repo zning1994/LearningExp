@@ -19,7 +19,7 @@ public class problem4newClient {
 
     //定义发送数据报的目的地
     public static final int DEST_PORT = 30000;
-    public static final String DEST_IP = "192.168.0.112";
+    public static final String DEST_IP = "192.168.18.234";
     //定义每个数据报的最大大小为4K
     private static final int DATA_LEN = 40960;
     //定义该客户端使用的DatagramSocket

@@ -16,7 +16,7 @@ public class problem1 {
         System.out.print("Hi");
         URL google = null;
         try {
-            google = new URL("http://172.16.0.1/quickwiz.asp");
+            google = new URL("http://www.sdust.edu.cn:80/content__0C1B6CA56B3813CDA2D832ACC61BCC20.htm");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
