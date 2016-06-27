@@ -1,1 +1,4 @@
 10MFile
+*.class
+.idea
+*.txt
